@@ -1,12 +1,17 @@
 # This is a basic workflow to help you get started with Actions
 name: "Pull Request Labeler"
 on:
-- pull_request_target
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  pull_request:
+    branches:
+      - main
 
 jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-    - uses: mikedelgaudio/labeler@vMike
+    - uses: mikedelgaudio/labeler@v3
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: "./github/labelerV2.yml"
